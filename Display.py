@@ -2,7 +2,6 @@ from cvzone.PoseModule import PoseDetector
 import cv2
 import numpy as np
 from Cloths import Shirt
-import math
 
 RADIUS = 5
 COLOR = (0, 255, 0)
@@ -15,8 +14,10 @@ class Display:
     def __init__(self):
         self.detector = PoseDetector()
         self.camera = cv2.VideoCapture(0)
+        # cv2.namedWindow("Image", cv2.WINDOW_NORMAL)  # Create window with freedom of dimensions
+        # self.last_cap_date =
 
-    def display_pic(self, shirt: Shirt):
+    def display_pic(self, shirt: Shirt, signal: str=None):
         success, img = self.camera.read()
 
         if success:
@@ -53,7 +54,7 @@ class Display:
                     # cv2.circle(img2, (lmList[24][1], lmList[24][2]), RADIUS, COLOR, THIKNESS)
 
             cv2.imshow("Image", img2)
-            if cv2.waitKey(1) & 0xFF == ord('q'):
+            if (cv2.waitKey(1) & 0xFF == ord(EXIT_SIGNAL)) or signal == EXIT_SIGNAL:
                 self.camera.release()
                 cv2.destroyAllWindows()
                 return EXIT_SIGNAL
@@ -65,3 +66,27 @@ if __name__ == "__main__":
     displayer = Display()
     while displayer.display_pic(shirt) != EXIT_SIGNAL:
         pass
+    # """https://www.digitalocean.com/community/tutorials/python-socket-programming-server-client"""
+    # server_socket = socket.socket()  # get instance
+    # # look closely. The bind() function takes tuple as argument
+    # server_socket.bind((HOST, PORT))  # bind host address and port together
+    #
+    # # configure how many client the server can listen simultaneously
+    # server_socket.listen(1)
+    # while True:
+    #     displayer = Display()
+    #     signal = None
+    #     conn, address = server_socket.accept()  # accept new connection
+    #     print("Connection from: " + str(address))
+    #     conn.setblocking(False)
+    #     while displayer.display_pic(shirt, signal) != EXIT_SIGNAL:
+    #         # receive data stream. it won't accept data packet greater than 1024 bytes
+    #         ready = select.select([conn], [], [], 0.01)
+    #         if ready[0]:
+    #             data = conn.recv(1024).decode()
+    #             if not data:
+    #                 signal = EXIT_SIGNAL
+    #                 continue
+    #             print("from connected user: " + str(data))
+    #
+    #     conn.close()  # close the connection
