@@ -14,7 +14,7 @@ class Display:
     def __init__(self):
         self.detector = PoseDetector()
         self.camera = cv2.VideoCapture(0)
-        # cv2.namedWindow("Image", cv2.WINDOW_NORMAL)  # Create window with freedom of dimensions
+
         # self.last_cap_date =
 
     def display_pic(self, shirt: Shirt, signal: str=None):
@@ -52,7 +52,7 @@ class Display:
                     # cv2.circle(img2, (lmList[12][1], lmList[12][2]), RADIUS, COLOR, THIKNESS)
                     # cv2.circle(img2, (lmList[23][1], lmList[23][2]), RADIUS, COLOR, THIKNESS)
                     # cv2.circle(img2, (lmList[24][1], lmList[24][2]), RADIUS, COLOR, THIKNESS)
-
+            cv2.namedWindow("Image", cv2.WINDOW_NORMAL)  # Create window with freedom of dimensions
             cv2.imshow("Image", img2)
             if (cv2.waitKey(1) & 0xFF == ord(EXIT_SIGNAL)) or signal == EXIT_SIGNAL:
                 self.camera.release()
