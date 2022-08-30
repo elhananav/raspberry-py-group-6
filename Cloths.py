@@ -1,10 +1,15 @@
 import cv2
 from abc import abstractmethod
 from numpy import array
+
 import json
 import math
 
 CLOTH_INFO = "cloth_info.txt"
+
+
+def dist(first_dot: tuple, second_dot: tuple) -> float:
+    return math.sqrt((first_dot[0]-second_dot[0])**2 + (first_dot[1]-second_dot[1])**2)
 
 
 def load_shirts():
@@ -22,10 +27,10 @@ class Cloth:
         self.dots = dots
 
         if "top_right" in dots and "top_left" in dots:
-            self.width = math.dist(dots["top_right"], dots["top_left"])
+            self.width = dist(dots["top_right"], dots["top_left"])
 
         if "bot_right" in dots and "bot_left" in dots:
-            self.height = math.dist(dots["top_right"], dots["bot_right"])
+            self.height = dist(dots["top_right"], dots["bot_right"])
 
     @abstractmethod
     def get_sprite(self, dots: dict) -> array:
@@ -39,10 +44,10 @@ class Shirt(Cloth):
     def get_sprite(self, dots: dict) -> array:
 
         if "top_right" in dots and "top_left" in dots:
-            width = math.dist(dots["top_right"], dots["top_left"])
+            width = dist(dots["top_right"], dots["top_left"])
 
         if "top_right" in dots and "bot_left" in dots:
-            height = math.dist(dots["top_right"], dots["bot_right"])
+            height = dist(dots["top_right"], dots["bot_right"])
 
         h, w = self.texture.shape[:2]
         x_scale, y_scale = width / self.width, height / self.height
