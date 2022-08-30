@@ -1,12 +1,13 @@
 SHIRT_IMAGES_DIRECTORY_PATH = "ShirtImages/"
-
+PANTS_IMAGES_DIRECTORY_PATH = "PantsImages/"
 PANTS_KEY = "pants"
 SHIRTS_KEY = "shirts"
 
+
 def get_clothes_dictionary() -> dict:
     clothes = {
-        "shirts": {},
-        "pants": {}
+        SHIRTS_KEY: {},
+        PANTS_KEY: {}
     }
     clothes[SHIRTS_KEY][1] = (SHIRT_IMAGES_DIRECTORY_PATH + "IMG01.png",
                             {"top_right": (456.0, 100.0), "top_left": (86.0, 79.0), "bot_right": (364.0, 641.0),
@@ -24,9 +25,11 @@ def get_clothes_dictionary() -> dict:
                             {"top_right": (328.0, 76.0), "top_left": (68.0, 65.0), "bot_right": (262.0, 470.0),
                              "bot_left": (87.0, 463.0)})
     clothes[SHIRTS_KEY][6] = (SHIRT_IMAGES_DIRECTORY_PATH + "IMG06.png",
-                            {"top_right": (426.0, 97.0), "top_left": (111.0, 86.0), "bot_right": (332.0, 570.0),
-                             "bot_left": (187.0, 561.0)})
-
+                              {"top_right": (426.0, 97.0), "top_left": (111.0, 86.0), "bot_right": (332.0, 570.0),
+                               "bot_left": (187.0, 561.0)})
+    clothes[PANTS_KEY][1] = (PANTS_IMAGES_DIRECTORY_PATH + "P-IMG01.png",
+                             {"top_right": (467.0, 44.0), "top_left": (147.0, 55.0), "bot_right": (509.0, 1377.0),
+                              "bot_left": (136.0, 1368.0)})
     return clothes
 
 

@@ -41,7 +41,7 @@ class Shirt(Cloth):
         if "top_right" in dots and "top_left" in dots:
             width = math.dist(dots["top_right"], dots["top_left"])
 
-        if "bot_right" in dots and "bot_left" in dots:
+        if "top_right" in dots and "bot_left" in dots:
             height = math.dist(dots["top_right"], dots["bot_right"])
 
         h, w = self.texture.shape[:2]
@@ -63,7 +63,7 @@ class Pants(Cloth):
         if "top_right" in dots and "top_left" in dots:
             width = math.sqrt(
                 (dots["top_right"][0] - dots["top_left"][0]) ** 2 + (dots["top_right"][1] - dots["top_left"][1]) ** 2)
-        if "bot_right" in dots and "bot_left" in dots:
+        if "top_right" in dots and "bot_left" in dots:
             height = math.sqrt(
                 (dots["top_right"][0] - dots["bot_right"][0]) ** 2 + (dots["top_right"][1] - dots["bot_right"][1]) ** 2)
 

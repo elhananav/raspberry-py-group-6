@@ -69,7 +69,8 @@ class Display:
                     "bot_left": (lm_list[24][1], lm_list[24][2]),
                     "bot_right": (lm_list[23][1], lm_list[23][2])
                 })
-            cv2.namedWindow("Image", cv2.WINDOW_NORMAL)  # Create window with freedom of dimensions
+            cv2.namedWindow("Image", cv2.WND_PROP_FULLSCREEN)
+            cv2.setWindowProperty("Image", cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN)
             cv2.imshow("Image", final_image)
 
         if (cv2.waitKey(1) & 0xFF == ord(EXIT_SIGNAL)) or signal == EXIT_SIGNAL:
