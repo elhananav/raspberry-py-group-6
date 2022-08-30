@@ -2,7 +2,6 @@ import cv2
 from abc import abstractmethod
 from numpy import array
 import json
-from numpy import arcsin
 import math
 
 
